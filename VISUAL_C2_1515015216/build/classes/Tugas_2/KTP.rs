@@ -1,0 +1,9 @@
+tugas_2.KTP$4
+tugas_2.KTP$5
+tugas_2.KTP$6
+tugas_2.KTP$7
+tugas_2.KTP$1
+tugas_2.KTP$2
+tugas_2.KTP$3
+tugas_2.KTP$8
+tugas_2.KTP
