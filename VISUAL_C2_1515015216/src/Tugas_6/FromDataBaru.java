@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tugas_7;
+package Tugas_6;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
