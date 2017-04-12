@@ -156,6 +156,11 @@ public class FromDataBaru extends javax.swing.JFrame {
                 IdBCaretUpdate(evt);
             }
         });
+        IdB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdBActionPerformed(evt);
+            }
+        });
         IdB.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 IdBKeyTyped(evt);
@@ -268,6 +273,11 @@ public class FromDataBaru extends javax.swing.JFrame {
         jLabel5.setText("by");
 
         combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "id", "Judul", "Penulis" }));
+        combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -312,12 +322,16 @@ public class FromDataBaru extends javax.swing.JFrame {
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel5)
-                    .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -425,9 +439,9 @@ else if(combo.getSelectedItem().equals("Judul")){
             rs.close();
            // Cari.setText("");
         }
-        catch(Exception e)  {
+        catch(SQLException e)  {
             JOptionPane.showMessageDialog(null,"Data yang Anda cari Tidak dapat Ditemukan","kesalahan",JOptionPane.WARNING_MESSAGE);
-//            System.err.println("error (search) : " +ex);
+            System.err.println("error (search) : " +e);
         }
 }
 else if(combo.getSelectedItem().equals("Penulis")){
@@ -468,49 +482,49 @@ else if(combo.getSelectedItem().equals("Penulis")){
 
     }//GEN-LAST:event_CariActionPerformed
     private void EditData(String id,String judul, String penulis, String harga){
-        try {
-            String sql = "update buku set id='"+id+"',judul='"+judul+"',penulis='"+penulis+"',harga="+harga+" where judul='"+IdB.getText()+"'";//penulisan query edit berupa update
-            /*pembentukan stetmen dan juga eksekusi query*/
-            stt = con.createStatement();
-            stt.executeUpdate(sql);
-            /*mengosongkan form dan field pada frame*/
-            IdB.setText("");
-            Judul.setText("");
-            Penulis.setSelectedIndex(0);
-            Harga.setText("");
-            
-            
-        } catch (SQLException ex) {
-             System.out.println(ex.getMessage());
-        }
+//        try {
+//            String sql = "update buku set id='"+id+"',judul='"+judul+"',penulis='"+penulis+"',harga="+harga+" where judul='"+IdB.getText()+"'";//penulisan query edit berupa update
+//            /*pembentukan stetmen dan juga eksekusi query*/
+//            stt = con.createStatement();
+//            stt.executeUpdate(sql);
+//            /*mengosongkan form dan field pada frame*/
+//            IdB.setText("");
+//            Judul.setText("");
+//            Penulis.setSelectedIndex(0);
+//            Harga.setText("");
+//            
+//            
+//        } catch (SQLException ex) {
+//             System.out.println(ex.getMessage());
+//        }
         }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String id = IdB.getText();
-        String judul = Judul.getText();
-        String penulis = Penulis.getSelectedItem().toString();
-        String harga = Harga.getText();
-        
-        int ok=JOptionPane.showConfirmDialog(this,"Apakah Yakin Untuk Update Record ini???","Confirmation",JOptionPane.YES_NO_OPTION);
-         try
-            {
-                if(ok==0)
-                {
-                try
-                    {
-                        EditData(id,judul,penulis,harga); //menjalankan fungsi EditData tadi dengan parameter yang ada
-                        InitTable(); //untuk membuat atau meload ulang model yang ada sehingga akan update ketika ada perubahan setelah dilakukan EditData di database
-                        TampilData();//untuk menampilkan model baru yang telah di load
-                        Simpan.setEnabled(true);//menimbulkan saat bedit di klik
-                        JOptionPane.showMessageDialog(this,"Update Data Sukses");
-                    }
-                catch (Exception e)
-                    {
-                        JOptionPane.showMessageDialog(this, "Update Data Gagal");
-                    }
-                }
-                
-           }catch (Exception e){}
+//        String id = IdB.getText();
+//        String judul = Judul.getText();
+//        String penulis = Penulis.getSelectedItem().toString();
+//        String harga = Harga.getText();
+//        
+//        int ok=JOptionPane.showConfirmDialog(this,"Apakah Yakin Untuk Update Record ini???","Confirmation",JOptionPane.YES_NO_OPTION);
+//         try
+//            {
+//                if(ok==0)
+//                {
+//                try
+//                    {
+//                        EditData(id,judul,penulis,harga); //menjalankan fungsi EditData tadi dengan parameter yang ada
+//                        InitTable(); //untuk membuat atau meload ulang model yang ada sehingga akan update ketika ada perubahan setelah dilakukan EditData di database
+//                        TampilData();//untuk menampilkan model baru yang telah di load
+//                        Simpan.setEnabled(true);//menimbulkan saat bedit di klik
+//                        JOptionPane.showMessageDialog(this,"Update Data Sukses");
+//                    }
+//                catch (Exception e)
+//                    {
+//                        JOptionPane.showMessageDialog(this, "Update Data Gagal");
+//                    }
+//                }
+//                
+//           }catch (Exception e){}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void IdBCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_IdBCaretUpdate
@@ -569,6 +583,14 @@ if(Character.isDigit(b.getKeyChar())){
         // TODO add your handling code here:
         filterangka(evt);
     }//GEN-LAST:event_JudulKeyTyped
+
+    private void comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboActionPerformed
+
+    private void IdBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdBActionPerformed
 
     /**
      * @param args the command line arguments

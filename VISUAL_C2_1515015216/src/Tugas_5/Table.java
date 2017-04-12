@@ -168,6 +168,11 @@ if(Character.isDigit(b.getKeyChar())){
                 updateMouseClicked(evt);
             }
         });
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
 
         hapus.setText("Hapus");
         hapus.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -451,6 +456,10 @@ if(Character.isDigit(b.getKeyChar())){
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jTable1CaretPositionChanged
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateActionPerformed
 
 
     /**
